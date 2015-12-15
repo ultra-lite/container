@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/ultra-lite/container.svg?branch=master)](https://travis-ci.org/ultra-lite/container)
+
 Lambda Container
 ================
 
