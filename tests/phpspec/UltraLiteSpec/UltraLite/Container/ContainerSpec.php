@@ -47,7 +47,6 @@ class ContainerSpec extends ObjectBehavior
 
     function it_accepts_delegate_containers(ContainerInterface $delegateContainer)
     {
-
         // ARRANGE
         $factoryClosure =
             function (ContainerInterface $container) {
