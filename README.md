@@ -48,7 +48,7 @@ If you're not using the Delegate Container concept from the Container-Interop st
 do this:
 
 ```php
-$container = new \UltraLite\LambdaContainer\Container();
+$container = new \UltraLite\Container\Container();
 // ... (configure container)
 $myCompositeContainer->addContainer($container); // or whatever
 $container->setDelegateContainer($myCompositeContainer);
