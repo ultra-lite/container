@@ -1,0 +1,7 @@
+suites:
+
+    src:
+        namespace:   UltraLite\Container
+        spec_prefix: UltraLiteSpec
+        src_path:    src/
+        spec_path:   tests/phpspec/

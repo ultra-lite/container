@@ -1,0 +1,30 @@
+{
+    "name": "ultra-lite/container",
+
+    "version": "0.1.0",
+
+    "license": "MIT",
+
+    "require": {
+        "php":                                 ">=5.5.0",
+        "container-interop/container-interop": "1.1"
+    },
+
+    "require-dev": {
+        "phpunit/phpunit": "~5.1.0",
+        "behat/behat":     "dev-master#2059cbe4bb8055c8555fa3365c6ea3b4b30288f5",
+        "phpspec/phpspec": "~2.4.0"
+    },
+
+    "autoload": {
+        "psr-0": {
+            "UltraLite\\Container\\": "src/"
+        }
+    },
+
+    "autoload-dev": {
+        "psr-0": {
+            "UltraLite\\Container\\Test\\": "tests/behat/context_files"
+        }
+    }
+}

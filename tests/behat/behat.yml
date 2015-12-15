@@ -1,0 +1,11 @@
+default:
+
+    autoload:
+        - %paths.base%/context_files/
+
+    suites:
+
+        integrationtesting:
+            paths:    [ %paths.base%/feature_files/ ]
+            filters:  { tags: ~wip }
+            contexts: [ \UltraLite\Container\Test\IntegrationTesting\IntegrationTestingContext ]
