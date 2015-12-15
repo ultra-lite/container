@@ -2,9 +2,9 @@
 
 # Ultra-Lite Container
 
-An ultra-lightweight DI container.
+An ultra-lightweight DI container, filling a Pimple-shaped gap in a Container-Interop world.
 
-Using lambda functions as factories for creating dependencies.  Inspired by Pimple DI.
+Using anonymous functions as factories for creating dependencies.  Inspired by Pimple DI.
 
 Aims for full compliance with the Container-Interop standard, including the optional Delegate Lookup feature.
 
@@ -13,7 +13,6 @@ It is backwards-compatible with PHP 5.5.
 ## Usage
 
 ### Setting services
-
 
 Add factory closures to the container like this:
 
