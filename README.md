@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/ultra-lite/container.svg?branch=master)](https://travis-ci.org/ultra-lite/container)
 
-# Lambda Container
+# Ultra-Lite Container
 
 An ultra-lightweight DI container.
 
