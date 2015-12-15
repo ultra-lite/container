@@ -5,7 +5,11 @@ use Interop\Container\Exception\NotFoundException;
 
 class DiServiceNotFound extends \InvalidArgumentException implements NotFoundException
 {
-    public static function createFromServiceId(string $serviceId): DiServiceNotFound
+    /**
+     * @param string $serviceId
+     * @return DiServiceNotFound
+     */
+    public static function createFromServiceId($serviceId)
     {
         $message = "Service '$serviceId' requested from DI container, but not found.";
         return new static($message);
