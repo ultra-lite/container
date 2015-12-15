@@ -31,7 +31,7 @@ $container->set(
 Get services out of the container like this:
 
 ```php
-$object = $container-get('service-id');
+$object = $container->get('service-id');
 ```
 
 ### See if a service exists
@@ -56,6 +56,14 @@ $container->setDelegateContainer($myCompositeContainer);
 
 When the container is asked for a service using ```get()```, it will return it.  It will pass the Delegate Container
 into the factory closure, so it is from here that any dependencies of your service will be retrieved.
+
+## Installation
+
+```json
+"require": {
+    "ultra-lite/container": "*"
+}
+```
 
 ## Contributions
 
