@@ -4,6 +4,7 @@ namespace UltraLiteSpec\UltraLite\Container;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use UltraLite\Container\Container;
+use Interop\Container\ContainerInterface;
 
 /**
  * @mixin Container
@@ -42,5 +43,25 @@ class ContainerSpec extends ObjectBehavior
     function it_throws_a_standards_compliant_exception_when_the_dependency_doesnt_exist()
     {
         $this->shouldThrow('\Interop\Container\Exception\NotFoundException')->during('get', ['service-id']);
+    }
+
+    function it_accepts_delegate_containers(ContainerInterface $delegateContainer)
+    {
+
+        // ARRANGE
+        $factoryClosure =
+            function (ContainerInterface $container) {
+                return $container->get('a-dependency');
+            }
+        ;
+
+        $this->set('a-service', $factoryClosure);
+
+        // ACT
+        $this->setDelegateContainer($delegateContainer);
+        $this->get('a-service');
+
+        // ASSERT
+        $delegateContainer->get('a-dependency')->shouldHaveBeenCalled();
     }
 }
