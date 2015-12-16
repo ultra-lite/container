@@ -56,6 +56,15 @@ $container->setDelegateContainer($myCompositeContainer);
 When the container is asked for a service using ```get()```, it will return it.  It will pass the Delegate Container
 into the factory closure, so it is from here that any dependencies of your service will be retrieved.
 
+## Alternatives
+
+Ultra-Lite Container was originally inspired by [Pimple](https://github.com/silexphp/Pimple), which still makes an
+excellent DI container in PHP.  Container-Interop compliant wrappers are available.  Another excellent project,
+[Picotainer](https://github.com/thecodingmachine/picotainer), is along similar lines, with the principle difference
+being that the dependencies are defined at the time of instantiation of the container.  The
+[Container Interop](https://github.com/container-interop/container-interop) team have prepared a full list of PHP DI
+containers known to comply with the standard, so plenty of options are available.
+
 ## Installation
 
 ```json
