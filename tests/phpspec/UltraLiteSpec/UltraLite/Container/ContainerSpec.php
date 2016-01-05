@@ -26,7 +26,7 @@ class ContainerSpec extends ObjectBehavior
         ;
 
         // ACT
-        $this->set('service-id', $factoryClosure);
+        $this->setServiceFactories(['service-id' => $factoryClosure]);
         $result = $this->get('service-id');
 
         // ASSERT
@@ -36,7 +36,7 @@ class ContainerSpec extends ObjectBehavior
     function it_can_tell_if_it_has_things()
     {
         $this->has('service-id')->shouldBe(false);
-        $this->set('service-id', function () {});
+        $this->setServiceFactories(['service-id' => function () {}]);
         $this->has('service-id')->shouldBe(true);
     }
 
@@ -54,7 +54,7 @@ class ContainerSpec extends ObjectBehavior
             }
         ;
 
-        $this->set('a-service', $factoryClosure);
+        $this->setServiceFactories(['a-service' => $factoryClosure]);
 
         // ACT
         $this->setDelegateContainer($delegateContainer);

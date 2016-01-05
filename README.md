@@ -8,22 +8,31 @@ Using anonymous functions as factories for creating dependencies.  Inspired by P
 
 Aims for full compliance with the Container-Interop standard, including the optional Delegate Lookup feature.
 
-It is backwards-compatible with PHP 5.5.
+v0.1.0 is backwards-compatible with PHP 5.5.  Subsequent stable releases require PHP 7.
 
 ## Usage
 
 ### Setting services
 
-Add factory closures to the container like this:
+Add factory closures to the container inline, or using a config file as below.
+
+Example config file:
 
 ```php
-$container->set(
-    'service-id',
-    function (\Interop\Container\ContainerInterface $container) {
-        return new \stdClass();
-    }
-);
+return [
+    'service-id' =>
+        function (\Interop\Container\ContainerInterface $container) {
+            return new \stdClass();
+        },
+];
 ```
+
+Using config file:
+
+```php
+$container->setServiceFactories(require '/wherever/config/di.php');
+```
+
 
 ### Service retrieval
 

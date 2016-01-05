@@ -44,7 +44,7 @@ class IntegrationTestingContext implements Context, SnippetAcceptingContext
      */
     public function iSetTheServiceIdWithMyFactoryClosure($serviceId)
     {
-        $this->container->set($serviceId, $this->factoryClosure);
+        $this->container->setServiceFactories([$serviceId => $this->factoryClosure]);
     }
 
     /**

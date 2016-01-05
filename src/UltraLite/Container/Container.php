@@ -17,13 +17,14 @@ class Container implements ContainerInterface
     private $delegateContainer;
 
     /**
-     * @param string   $serviceId
-     * @param \Closure $serviceFactory
+     * Expects associative array like: ['service-id' => function (Container $c) {...}]
      */
-    public function set($serviceId, \Closure $serviceFactory)
+    public function setServiceFactories(array $serviceFactories)
     {
-        $this->serviceFactories[$serviceId] = $serviceFactory;
-        unset($this->services[$serviceId]);
+        foreach ($serviceFactories as $serviceId => $serviceFactory) {
+            $this->serviceFactories[$serviceId] = $serviceFactory;
+            unset($this->services[$serviceId]);
+        }
     }
 
     /**
@@ -45,11 +46,7 @@ class Container implements ContainerInterface
         return $this->services[$serviceId];
     }
 
-    /**
-     * @param string $serviceId
-     * @return mixed
-     */
-    private function getServiceFromFactory($serviceId)
+    private function getServiceFromFactory(string $serviceId)
     {
         $serviceFactory = $this->serviceFactories[$serviceId];
         $containerToUseForDependencies = $this->delegateContainer ?: $this;
@@ -65,9 +62,6 @@ class Container implements ContainerInterface
         return isset($this->serviceFactories[$serviceId]);
     }
 
-    /**
-     * @param ContainerInterface $delegateContainer
-     */
     public function setDelegateContainer(ContainerInterface $delegateContainer)
     {
         $this->delegateContainer = $delegateContainer;
