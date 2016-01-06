@@ -44,7 +44,7 @@ class IntegrationTestingContext implements Context, SnippetAcceptingContext
      */
     public function iSetTheServiceIdWithMyFactoryClosure($serviceId)
     {
-        $this->container->setServiceFactories([$serviceId => $this->factoryClosure]);
+        $this->container->set($serviceId, $this->factoryClosure);
     }
 
     /**
@@ -97,5 +97,20 @@ class IntegrationTestingContext implements Context, SnippetAcceptingContext
     public function theResultShouldHaveThePropertyOnIt($propertyName)
     {
         \PHPUnit_Framework_Assert::assertObjectHasAttribute($propertyName, $this->result);
+    }
+
+    /**
+     * @Given I have a config file at :pathToConfigFile
+     */
+    public function iHaveAConfigFileAt($pathToConfigFile)
+    {
+    }
+
+    /**
+     * @When I tell the container to read the config file at :pathToConfigFile
+     */
+    public function iTellTheContainerToReadTheConfigFileAt($pathToConfigFile)
+    {
+        $this->container->configureFromFile($pathToConfigFile);
     }
 }

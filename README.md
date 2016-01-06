@@ -12,7 +12,18 @@ v0.1.0 is backwards-compatible with PHP 5.5.  Subsequent stable releases require
 
 ## Usage
 
-### Setting services
+### Setting services individually
+
+```php
+$container->set(
+    'service-id',
+    function (\Interop\Container\ContainerInterface $container) {
+        return new \stdClass();
+    }
+);
+```
+
+### Setting services from a config file
 
 Add factory closures to the container inline, or using a config file as below.
 
@@ -30,7 +41,7 @@ return [
 Using config file:
 
 ```php
-$container->setServiceFactories(require '/wherever/config/di.php');
+$container->configureFromFile('/wherever/config/di.php');
 ```
 
 

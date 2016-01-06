@@ -16,14 +16,16 @@ class Container implements ContainerInterface
     /** @var ContainerInterface */
     private $delegateContainer;
 
-    /**
-     * Expects associative array like: ['service-id' => function (Container $c) {...}]
-     */
-    public function setServiceFactories(array $serviceFactories)
+    public function set(string $serviceId, \Closure $serviceFactory)
     {
-        foreach ($serviceFactories as $serviceId => $serviceFactory) {
-            $this->serviceFactories[$serviceId] = $serviceFactory;
-            unset($this->services[$serviceId]);
+        $this->serviceFactories[$serviceId] = $serviceFactory;
+        unset($this->services[$serviceId]);
+    }
+
+    public function configureFromFile(string $path)
+    {
+        foreach (require $path as $serviceId => $serviceFactory) {
+            $this->set($serviceId, $serviceFactory);
         }
     }
 
