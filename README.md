@@ -76,6 +76,9 @@ $container->setDelegateContainer($myCompositeContainer);
 When the container is asked for a service using ```get()```, it will return it.  It will pass the Delegate Container
 into the factory closure, so it is from here that any dependencies of your service will be retrieved.
 
+You can use the basic `CompositeContainer` class provided by the library, if you need something to loop through various
+delegate containers.
+
 ## Alternatives
 
 Ultra-Lite Container was originally inspired by [Pimple](https://github.com/silexphp/Pimple), which still makes an
