@@ -16,13 +16,20 @@ class Container implements ContainerInterface
     /** @var ContainerInterface */
     private $delegateContainer;
 
-    public function set(string $serviceId, \Closure $serviceFactory)
+    /**
+     * @param string $serviceId
+     * @param \Closure $serviceFactory
+     */
+    public function set($serviceId, \Closure $serviceFactory)
     {
         $this->serviceFactories[$serviceId] = $serviceFactory;
         unset($this->services[$serviceId]);
     }
 
-    public function configureFromFile(string $path)
+    /**
+     * @param string $path
+     */
+    public function configureFromFile($path)
     {
         foreach (require $path as $serviceId => $serviceFactory) {
             $this->set($serviceId, $serviceFactory);
@@ -48,7 +55,11 @@ class Container implements ContainerInterface
         return $this->services[$serviceId];
     }
 
-    private function getServiceFromFactory(string $serviceId)
+    /**
+     * @param string $serviceId
+     * @return mixed
+     */
+    private function getServiceFromFactory($serviceId)
     {
         $serviceFactory = $this->serviceFactories[$serviceId];
         $containerToUseForDependencies = $this->delegateContainer ?: $this;

@@ -8,7 +8,7 @@ Using anonymous functions as factories for creating dependencies.  Inspired by P
 
 Aims for full compliance with the Container-Interop standard, including the optional Delegate Lookup feature.
 
-v0.1.0 is backwards-compatible with PHP 5.5.  Subsequent stable releases require PHP 7.
+As of version `3.0`, support for PHP 5.6 is reinstated.  However, the library works perfectly well with PHP 7.0.
 
 ## Usage
 
