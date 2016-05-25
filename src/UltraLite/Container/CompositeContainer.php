@@ -41,4 +41,9 @@ class CompositeContainer implements ContainerInterface
     {
         $this->containers[] = $delegateContainer;
     }
+
+    public function addPriorityContainer(ContainerInterface $delegateContainer)
+    {
+        array_unshift($this->containers, $delegateContainer);
+    }
 }
