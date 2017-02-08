@@ -2,10 +2,10 @@
 namespace UltraLite\Container\Test\IntegrationTesting;
 
 use Behat\Behat\Context\Context;
-use Behat\Behat\Context\SnippetAcceptingContext;
 use UltraLite\Container\Container;
+use PHPUnit\Framework\Assert;
 
-class IntegrationTestingContext implements Context, SnippetAcceptingContext
+class IntegrationTestingContext implements Context
 {
     /** @var Container */
     private $container;
@@ -30,7 +30,7 @@ class IntegrationTestingContext implements Context, SnippetAcceptingContext
     /**
      * @Given I have a factory closure which returns a new :classname
      */
-    public function iHaveAFactoryClosureWhichReturnsANew($classname)
+    public function iHaveAFactoryClosureWhichReturnsANew(string $classname)
     {
         $this->factoryClosure =
             function () use ($classname) {
@@ -42,7 +42,7 @@ class IntegrationTestingContext implements Context, SnippetAcceptingContext
     /**
      * @When I set the service ID :serviceId with my factory closure
      */
-    public function iSetTheServiceIdWithMyFactoryClosure($serviceId)
+    public function iSetTheServiceIdWithMyFactoryClosure(string $serviceId)
     {
         $this->container->set($serviceId, $this->factoryClosure);
     }
@@ -50,7 +50,7 @@ class IntegrationTestingContext implements Context, SnippetAcceptingContext
     /**
      * @When I get the service ID :serviceId (again)
      */
-    public function iGetTheServiceId($serviceId)
+    public function iGetTheServiceId(string $serviceId)
     {
         $this->result = $this->container->get($serviceId);
     }
@@ -58,15 +58,15 @@ class IntegrationTestingContext implements Context, SnippetAcceptingContext
     /**
      * @Then the result should be a :classname object
      */
-    public function theResultShouldBeAObject($classname)
+    public function theResultShouldBeAObject(string $classname)
     {
-        \PHPUnit_Framework_Assert::assertInstanceOf($classname, $this->result);
+        Assert::assertInstanceOf($classname, $this->result);
     }
 
     /**
      * @When I try to get the service ID :serviceId
      */
-    public function iTryToGetTheServiceId($serviceId)
+    public function iTryToGetTheServiceId(string $serviceId)
     {
         try {
             $this->container->get($serviceId);
@@ -78,15 +78,15 @@ class IntegrationTestingContext implements Context, SnippetAcceptingContext
     /**
      * @Then the resulting error should be a :exceptionType
      */
-    public function theResultingErrorShouldBeA($exceptionType)
+    public function theResultingErrorShouldBeA(string $exceptionType)
     {
-        \PHPUnit_Framework_Assert::assertInstanceOf($exceptionType, $this->exceptionThrown);
+        Assert::assertInstanceOf($exceptionType, $this->exceptionThrown);
     }
 
     /**
      * @When I add a property :propertyName to the result
      */
-    public function iAddAPropertyToTheResult($propertyName)
+    public function iAddAPropertyToTheResult(string $propertyName)
     {
         $this->result->$propertyName = 1;
     }
@@ -94,22 +94,22 @@ class IntegrationTestingContext implements Context, SnippetAcceptingContext
     /**
      * @Then the result should have the property :propertyName on it
      */
-    public function theResultShouldHaveThePropertyOnIt($propertyName)
+    public function theResultShouldHaveThePropertyOnIt(string $propertyName)
     {
-        \PHPUnit_Framework_Assert::assertObjectHasAttribute($propertyName, $this->result);
+        Assert::assertObjectHasAttribute($propertyName, $this->result);
     }
 
     /**
      * @Given I have a config file at :pathToConfigFile
      */
-    public function iHaveAConfigFileAt($pathToConfigFile)
+    public function iHaveAConfigFileAt(string $pathToConfigFile)
     {
     }
 
     /**
      * @When I tell the container to read the config file at :pathToConfigFile
      */
-    public function iTellTheContainerToReadTheConfigFileAt($pathToConfigFile)
+    public function iTellTheContainerToReadTheConfigFileAt(string $pathToConfigFile)
     {
         $this->container->configureFromFile($pathToConfigFile);
     }

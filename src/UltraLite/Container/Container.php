@@ -29,7 +29,7 @@ class Container implements ContainerInterface
     /**
      * @param string $path
      */
-    public function configureFromFile($path)
+    public function configureFromFile(string $path)
     {
         foreach (require $path as $serviceId => $serviceFactory) {
             $this->set($serviceId, $serviceFactory);
@@ -59,7 +59,7 @@ class Container implements ContainerInterface
      * @param string $serviceId
      * @return mixed
      */
-    private function getServiceFromFactory($serviceId)
+    private function getServiceFromFactory(string $serviceId)
     {
         $serviceFactory = $this->serviceFactories[$serviceId];
         $containerToUseForDependencies = $this->delegateContainer ?: $this;

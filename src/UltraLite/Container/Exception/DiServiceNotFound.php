@@ -9,7 +9,7 @@ class DiServiceNotFound extends \InvalidArgumentException implements NotFoundExc
      * @param string $serviceId
      * @return DiServiceNotFound
      */
-    public static function createFromServiceId($serviceId)
+    public static function createFromServiceId(string $serviceId)
     {
         $message = "Service '$serviceId' requested from DI container, but not found.";
         return new static($message);
