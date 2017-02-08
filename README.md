@@ -5,15 +5,12 @@
 
 # ![logo](https://avatars1.githubusercontent.com/u/16309098?v=3&s=100) Ultra-Lite Container
 
-An ultra-lightweight DI container, filling a Pimple-shaped gap in a Container-Interop world.
+An ultra-lightweight DI container.  The Ultra-Lite container is PSR-11 compliant.  (Previous versions supported
+container-interop instead.)
 
-Using anonymous functions as factories for creating dependencies.  Inspired by Pimple DI.
+Use anonymous functions as factories to specify your services.
 
-Aims for full compliance with the Container-Interop standard, including the optional Delegate Lookup feature.
-
-As of version `4.0`, PHP 7.0+ is required.
-
-Version 5 will only implement PSR-11, and not Container-Interop.  The implementation of the delegate container design pattern, and the provision of the composite container, will be unaffected by this change.
+This container also supports the Delegate Lookup pattern, and comes with a basic composite container.
 
 ## Usage
 
@@ -22,7 +19,7 @@ Version 5 will only implement PSR-11, and not Container-Interop.  The implementa
 ```php
 $container->set(
     'service-id',
-    function (\Interop\Container\ContainerInterface $container) {
+    function (\Psr\Container\ContainerInterface $container) {
         return new \stdClass();
     }
 );
@@ -37,7 +34,7 @@ Example config file:
 ```php
 return [
     'service-id' =>
-        function (\Interop\Container\ContainerInterface $container) {
+        function (\Psr\Container\ContainerInterface $container) {
             return new \stdClass();
         },
 ];
@@ -69,36 +66,31 @@ $thingExists = $container->has('service-id');
 ### Use with a delegate container
 
 If you're not using the Delegate Container concept from the Container-Interop standard, ignore this bit.  If you are,
-do this:
+you can do this:
 
 ```php
 $container = new \UltraLite\Container\Container();
-// ... (configure container)
-$myCompositeContainer->addContainer($container); // or whatever
+$compositeContainer = new \UltraLite\Container\CompositeContainer(); // or any composite container
+$compositeContainer->addContainer($container); // will vary for other composite containers
 $container->setDelegateContainer($myCompositeContainer);
 ```
 
-When the container is asked for a service using ```get()```, it will return it.  It will pass the Delegate Container
+When the container is asked for a service using ```get()```, it will return it.  It will pass the Composite Container
 into the factory closure, so it is from here that any dependencies of your service will be retrieved.
 
-You can use the basic `CompositeContainer` class provided by the library, if you need something to loop through various
-delegate containers.
+The Composite Container provided simply loops through delegate containers in the order in which they were provided.
 
 ## Alternatives
 
 Ultra-Lite Container was originally inspired by [Pimple](https://github.com/silexphp/Pimple), which still makes an
 excellent DI container in PHP.  Container-Interop compliant wrappers are available.  Another excellent project,
 [Picotainer](https://github.com/thecodingmachine/picotainer), is along similar lines, with the principle difference
-being that the dependencies are defined at the time of instantiation of the container.  The
-[Container Interop](https://github.com/container-interop/container-interop) team have prepared a full list of PHP DI
-containers known to comply with the standard, so plenty of options are available.
+being that the dependencies are defined at the time of instantiation of the container.
 
 ## Installation
 
-```json
-"require": {
-    "ultra-lite/container": "*"
-}
+```bash
+composer require ultra-lite/container
 ```
 
 ## Contributions

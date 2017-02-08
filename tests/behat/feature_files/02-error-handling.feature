@@ -6,4 +6,4 @@ Feature: Basic error handling
     Scenario: Asking for a thing that doesn't exist
         Given I have an empty container
         When I try to get the service ID 'std-class'
-        Then the resulting error should be a '\Interop\Container\Exception\NotFoundException'
+        Then the resulting error should be a '\Psr\Container\NotFoundExceptionInterface'

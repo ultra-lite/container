@@ -4,8 +4,8 @@
     "license": "MIT",
 
     "require": {
-        "php":                                 "^7.0",
-        "container-interop/container-interop": "1.1"
+        "php": "^7.0",
+        "psr/container": "^1.0"
     },
 
     "require-dev": {

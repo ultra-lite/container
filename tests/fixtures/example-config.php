@@ -2,7 +2,7 @@
 
 return [
     'std-class' =>
-        function (\Interop\Container\ContainerInterface $container) {
+        function (\Psr\Container\ContainerInterface $container) {
             return new \stdClass();
         }
 ];

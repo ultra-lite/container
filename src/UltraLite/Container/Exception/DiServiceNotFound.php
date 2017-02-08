@@ -1,9 +1,9 @@
 <?php
 namespace UltraLite\Container\Exception;
 
-use Interop\Container\Exception\NotFoundException;
+use Psr\Container\NotFoundExceptionInterface;
 
-class DiServiceNotFound extends \InvalidArgumentException implements NotFoundException
+class DiServiceNotFound extends \InvalidArgumentException implements NotFoundExceptionInterface
 {
     /**
      * @param string $serviceId

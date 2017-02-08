@@ -2,7 +2,7 @@
 namespace UltraLiteSpec\UltraLite\Container\Exception;
 
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
+use Psr\Container\NotFoundExceptionInterface;
 use UltraLite\Container\Exception\DiServiceNotFound;
 
 /**
@@ -17,7 +17,7 @@ class DiServiceNotFoundSpec extends ObjectBehavior
 
     function it_is_standards_compliant()
     {
-        $this->shouldHaveType('\Interop\Container\Exception\NotFoundException');
+        $this->shouldHaveType(NotFoundExceptionInterface::class);
     }
 
     function it_has_a_named_constructor()

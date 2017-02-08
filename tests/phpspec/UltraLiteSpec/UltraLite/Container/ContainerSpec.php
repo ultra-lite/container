@@ -2,9 +2,9 @@
 namespace UltraLiteSpec\UltraLite\Container;
 
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
+use Psr\Container\NotFoundExceptionInterface;
 use UltraLite\Container\Container;
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 
 /**
  * @mixin Container
@@ -13,7 +13,7 @@ class ContainerSpec extends ObjectBehavior
 {
     function it_is_standards_compliant()
     {
-        $this->shouldHaveType('Interop\Container\ContainerInterface');
+        $this->shouldHaveType(ContainerInterface::class);
     }
 
     function it_can_get_dependencies_from_factory_closures()
@@ -42,7 +42,7 @@ class ContainerSpec extends ObjectBehavior
 
     function it_throws_a_standards_compliant_exception_when_the_dependency_doesnt_exist()
     {
-        $this->shouldThrow('\Interop\Container\Exception\NotFoundException')->during('get', ['service-id']);
+        $this->shouldThrow(NotFoundExceptionInterface::class)->during('get', ['service-id']);
     }
 
     function it_accepts_delegate_containers(ContainerInterface $delegateContainer)

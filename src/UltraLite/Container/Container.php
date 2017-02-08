@@ -1,7 +1,7 @@
 <?php
 namespace UltraLite\Container;
 
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 use UltraLite\Container\Exception\DiServiceNotFound;
 use Interop\Container\Exception\NotFoundException;
 
