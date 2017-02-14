@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/ultra-lite/container.svg?branch=master)](https://travis-ci.org/ultra-lite/container)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/ultra-lite/container/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/ultra-lite/container/?branch=master)
 
 ![logo](https://avatars1.githubusercontent.com/u/16309098?v=3&s=100)
 
