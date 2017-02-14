@@ -13,6 +13,8 @@ Aims for full compliance with the Container-Interop standard, including the opti
 
 As of version `4.0`, PHP 7.0+ is required.
 
+Version 5 will only implement PSR-11, and not Container-Interop.  The implementation of the delegate container design pattern, and the provision of the composite container, will be unaffected by this change.
+
 ## Usage
 
 ### Setting services individually
