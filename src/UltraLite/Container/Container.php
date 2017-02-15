@@ -56,7 +56,6 @@ class Container implements ContainerInterface
     }
 
     /**
-     * @param string $serviceId
      * @return mixed
      */
     private function getServiceFromFactory(string $serviceId)

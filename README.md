@@ -63,22 +63,23 @@ Check if something is in the container like this:
 $thingExists = $container->has('service-id');
 ```
 
-### Use with a delegate container
+### Use with the Delegate Lookup pattern
 
-If you're not using the Delegate Container concept from the Container-Interop standard, ignore this bit.  If you are,
+If you're not using the Delegate Lookup concept from the Container-Interop standard, ignore this bit.  If you are,
 you can do this:
 
 ```php
 $container = new \UltraLite\Container\Container();
-$compositeContainer = new \UltraLite\Container\CompositeContainer(); // or any composite container
+$delegateContainer = new \UltraLite\CompositeContainer\CompositeContainer(); // or any delegate container
 $compositeContainer->addContainer($container); // will vary for other composite containers
 $container->setDelegateContainer($myCompositeContainer);
 ```
 
+The [Ultra-Lite Composite Container](https://github.com/ultra-lite/composite-container) is an extremely lightweight
+delegate container you may wish to use.
+
 When the container is asked for a service using ```get()```, it will return it.  It will pass the Composite Container
 into the factory closure, so it is from here that any dependencies of your service will be retrieved.
-
-The Composite Container provided simply loops through delegate containers in the order in which they were provided.
 
 ## Alternatives
 
