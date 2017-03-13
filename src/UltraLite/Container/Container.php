@@ -56,6 +56,14 @@ class Container implements ContainerInterface
     }
 
     /**
+     * @return string[]
+     */
+    public function listServiceIds() : array
+    {
+        return array_keys($this->serviceFactories);
+    }
+
+    /**
      * @return mixed
      */
     private function getServiceFromFactory(string $serviceId)
