@@ -17,6 +17,16 @@ class Container implements ContainerInterface
     private $delegateContainer;
 
     /**
+     * @param \Closure[] $serviceFactories
+     */
+    public function __construct(array $serviceFactories = [])
+    {
+        foreach ($serviceFactories as $serviceId => $serviceFactory) {
+            $this->set($serviceId, $serviceFactory);
+        }
+    }
+
+    /**
      * @param string $serviceId
      * @param \Closure $serviceFactory
      */

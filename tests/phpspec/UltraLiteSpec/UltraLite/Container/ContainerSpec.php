@@ -63,4 +63,20 @@ class ContainerSpec extends ObjectBehavior
         // ASSERT
         $delegateContainer->get('a-dependency')->shouldHaveBeenCalled();
     }
+
+    function it_accepts_services_in_constructor()
+    {
+        // ARRANGE
+        $this->beConstructedWith([
+            'service-id' => function () {
+                return new \stdClass();
+            },
+        ]);
+
+        // ACT
+        $result = $this->get('service-id');
+
+        // ASSERT
+        $result->shouldBeLike(new \stdClass);
+    }
 }
