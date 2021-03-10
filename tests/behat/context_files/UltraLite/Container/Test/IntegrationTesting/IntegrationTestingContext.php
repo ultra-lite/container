@@ -7,17 +7,12 @@ use PHPUnit\Framework\Assert;
 
 class IntegrationTestingContext implements Context
 {
-    /** @var Container */
-    private $container;
-
-    /** @var \Closure */
-    private $factoryClosure;
+    private Container $container;
+    private \Closure $factoryClosure;
+    private \Exception $exceptionThrown;
 
     /** @var mixed */
     private $result;
-
-    /** @var \Exception */
-    private $exceptionThrown;
 
     /**
      * @Given I have an empty container

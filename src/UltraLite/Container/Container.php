@@ -2,8 +2,8 @@
 namespace UltraLite\Container;
 
 use Psr\Container\ContainerInterface;
+use Psr\Container\NotFoundExceptionInterface;
 use UltraLite\Container\Exception\DiServiceNotFound;
-use Interop\Container\Exception\NotFoundException;
 
 class Container implements ContainerInterface
 {
@@ -26,19 +26,12 @@ class Container implements ContainerInterface
         }
     }
 
-    /**
-     * @param string $serviceId
-     * @param \Closure $serviceFactory
-     */
-    public function set($serviceId, \Closure $serviceFactory)
+    public function set(string $serviceId, \Closure $serviceFactory)
     {
         $this->serviceFactories[$serviceId] = $serviceFactory;
         unset($this->services[$serviceId]);
     }
 
-    /**
-     * @param string $path
-     */
     public function configureFromFile(string $path)
     {
         foreach (require $path as $serviceId => $serviceFactory) {
@@ -47,12 +40,11 @@ class Container implements ContainerInterface
     }
 
     /**
-     * @throws NotFoundException
+     * @throws NotFoundExceptionInterface
      *
-     * @param string $serviceId
      * @return mixed
      */
-    public function get($serviceId)
+    public function get(string $serviceId)
     {
         if (!$this->has($serviceId)) {
             throw DiServiceNotFound::createFromServiceId($serviceId);
@@ -84,10 +76,9 @@ class Container implements ContainerInterface
     }
 
     /**
-     * @param string $serviceId
      * @return bool
      */
-    public function has($serviceId)
+    public function has(string $serviceId)
     {
         return isset($this->serviceFactories[$serviceId]);
     }
